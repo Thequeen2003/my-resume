@@ -247,57 +247,8 @@ ul {
             <p><strong>Interests:</strong> <span data-ms-member="interests">Traveling, Reading, Music Production</span></p>
         </div>
     </div>
-    <script> 
-document.addEventListener('DOMContentLoaded', function () {
-    
-    function formatContent(content) {
-        // Check for numbered list format
-        if (/^\d+\./.test(content)) {
-            content = content.replace(/\d+\./g, '-');
-        }
-        
-        // Split content into individual points based on dash
-        const points = content.split('-').map(point => point.trim()).filter(point => point);
-        
-        // Convert points to bullet format
-        return points.map(point => `• ${point}`).join('\n');
-    }
-
-    // List of sections to check
-    const sections = ['summary', 'education', 'work', 'leadership', 'project'];
-
-    sections.forEach(section => {
-        const sectionElement = document.getElementById(`${section}-section`);
-        if (!sectionElement) return; // If the section doesn't exist in the DOM, skip
-
-        let isSectionContentPresent = false;
-
-        // Special check for the summary section
-        if (section === 'summary') {
-            const summaryContent = sectionElement.querySelector('.section-content[data-ms-member="summary"]');
-            if (summaryContent && summaryContent.textContent.trim()) {
-                isSectionContentPresent = true;
-            }
-        } else {
-            // Check content within the section
-            const contentElements = sectionElement.querySelectorAll('[data-ms-member], [data-ms-member] *'); // Check both direct and nested elements
-            contentElements.forEach(contentElement => {
-                if (contentElement.textContent.trim()) {
-                    // Format the content to use bullet points
-                    contentElement.textContent = formatContent(contentElement.textContent);
-                    isSectionContentPresent = true;
-                }
-            });
-        }
-
-        // If the section has content, show it
-        if (isSectionContentPresent) {
-            sectionElement.classList.remove('hidden');
-        }
-    });
-});
 
 
- </script>
+
    </div>
 </body>
